@@ -1,14 +1,21 @@
 <template>
-  <audio ref="audio" src="/audio/song1.mp3" preload="auto" loop></audio>
   <NuxtPage />
+  <AudioControl />
 </template>
 
 <script setup>
-  const audio = ref(null)
 
-  onMounted(() => {
-    audio.value.volume = 0.25
-    // audio.value.play()
-  })
 </script>
+
+<style>
+  .page-enter-active,
+  .page-leave-active {
+    transition: all 0.4s;
+  }
+  .page-enter-from,
+  .page-leave-to {
+    opacity: 0;
+    filter: blur(1rem);
+}
+</style>
 

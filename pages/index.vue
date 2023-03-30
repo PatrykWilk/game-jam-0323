@@ -1,6 +1,11 @@
 <template>
-  <div class="w-screen h-screen max-w-screen max-h-screen flex flex-col align-center justify-center bg-start-bg bg-cover bg-no-repeat bg-center bg-gray-950">
-    <h1 class="text-center text-white text-7xl font-bold mb-10">Tower of Doom</h1>
-    <NuxtLink class="text-white text-center text-xl font-bold" to="/play">Start</NuxtLink>
+  <div class="w-screen h-screen max-w-screen max-h-screen flex flex-col items-center justify-center bg-start-bg bg-cover bg-no-repeat bg-center bg-gray-950">
+    <div class="flex items-center flex-1">
+      <h1 class="text-center text-white text-9xl flex-1 items-center font-extrabold drop-shadow-xl">Tower of Doom</h1>
+    </div>
+    <div class="flex-1">
+      <NuxtLink class="text-white text-center text-xl font-bold hover:underline" to="/play">Start</NuxtLink>
+
+    </div>
   </div>
 </template>
