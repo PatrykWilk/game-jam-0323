@@ -3,6 +3,7 @@
   <audio ref="mouseClick" src="/audio/click.mp3" preload="auto"></audio>
 
   <NuxtPage @sound="handleSound" />
+  
   <AudioControl />
 </template>
 

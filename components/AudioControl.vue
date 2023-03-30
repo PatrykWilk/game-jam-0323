@@ -9,15 +9,14 @@
 
 <script setup>
   const state = reactive({
-    isPlaying: false
+    isPlaying: true
   })
 
   const audio = ref(null)
 
   onMounted(() => {
     audio.value.volume = 0.25
-    // audio.value.play()
-    // state.isPlaying = true
+    audio.value.play()
   })
 
   const handleMute = () => {

@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'start-bg': "url('/images/start/background.jpg')"
+        'start-bg': "url('/images/start/background.gif')"
       },
       fontFamily: {
         'sofia': ['Sofia Sans', 'sans-serif']
