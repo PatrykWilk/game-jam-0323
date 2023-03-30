@@ -1,8 +1,8 @@
 <template>
   <!-- Audio tracks -->
-  <audio ref="backgroundMusic" src="/audio/song1.mp3" preload="auto" loop allow="autoplay"></audio>
+  <audio ref="backgroundMusic" src="/audio/song1.mp3" preload="auto" loop></audio>
   <audio ref="mouseClick" src="/audio/click.mp3" preload="auto"></audio>
-  <AudioControl v-if="route.path !== '/'" />
+  <AudioControl v-if="route.path !== '/'" :audioHandler="audioHandler" />
 
   <NuxtPage @sound="handleSound" />
 
@@ -18,14 +18,12 @@
     mouseClick.value.volume = 0.25
   })
 
-  const handleStart = () => {
-    handleSound('mouseClick')
-    backgroundMusic.value.play()
-    router.push('/start')
-  }
-
   const handleSound = (sound) => {
     eval(sound).value.play()
+  }
+
+  const audioHandler = () => {
+    (backgroundMusic.value.paused) ? backgroundMusic.value.play() : backgroundMusic.value.pause()
   }
 </script>
 
