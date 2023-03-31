@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <progress for="health" :value="props.health" max="100" class="progress"></progress>
+  <div class="w-full bg-gray-200 h-10 dark:bg-gray-700 relative mt-4 border-t border-white border-b">
+    <div class="bg-red-800 from-red-600 bg-gradient-to-l h-9 border border-red-700" :class="currentHealth <= 30 && 'animate-pulse'" :style="`width: ${healthProgress}%`">
+    </div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-extrabold">
+      Health: {{ currentHealth }} / {{ maxHealth }}
+    </div>
   </div>
 </template>
 
 <script setup>
-  const props = defineProps(['health'])
+  const props = defineProps(['health', 'maxHealth'])
+
+  const currentHealth = computed(() => {
+    return props.health
+  })
+
+  const healthProgress = computed(() => {
+    return (props.health / props.maxHealth) * 100
+  })
 </script>
-
-<style lang="css" scoped>
-  .progress {
-    width: 100%;
-    height: 20px;
-    background-color: red;
-    border-radius: 10px;
-    border: 1px solid red;
-  }
-
-</style>

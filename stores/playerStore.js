@@ -1,8 +1,9 @@
 export const playerStore = defineStore('player', () => {
   const player = reactive({
-    name: '',
+    name: 'Anekin',
     avatar: 'knight',
     hp: 100,
+    maxHp: 100,
     attack: 10,
     currentStage: 1,
     completedStages: []

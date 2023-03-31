@@ -20,11 +20,11 @@ module.exports = {
         'stage-three': "url('/images/levels/stage3.png')",
         'stage-four': "url('/images/levels/stage4.png')",
         'stage-five': "url('/images/levels/stage5.png')",
-        'enemy-spider': "url('/images/enemies/giant-spider.png')",
-        'enemy-minotaur': "url('/images/enemies/minotaur.png')",
-        'enemy-banshee': "url('/images/enemies/banshee.png')",
-        'enemy-medusa': "url('/images/enemies/medusa.png')",
-        'enemy-souleater': "url('/images/enemies/souleater.png')"
+        'spider': "url('/images/enemies/giant-spider.gif')",
+        'minotaur': "url('/images/enemies/minotaur.gif')",
+        'banshee': "url('/images/enemies/banshee.gif')",
+        'medusa': "url('/images/enemies/medusa.gif')",
+        'souleater': "url('/images/enemies/souleater.gif')"
       },
       fontFamily: {
         'sofia': ['Sofia Sans', 'sans-serif']

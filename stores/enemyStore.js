@@ -5,6 +5,7 @@ export const enemyStore = defineStore('enemy', () => {
       name: 'Giant Spider',
       avatar: 'spider',
       hp: 50,
+      maxHp: 50,
       attack: 5,
     }
   ]
