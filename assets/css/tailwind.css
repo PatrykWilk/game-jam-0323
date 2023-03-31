@@ -6,6 +6,6 @@
 
 @layer base {
   html {
-    @apply font-sofia;
+    @apply font-sofia text-white;
   }
 }

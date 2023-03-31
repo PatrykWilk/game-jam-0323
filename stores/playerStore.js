@@ -1,14 +1,16 @@
 export const playerStore = defineStore('player', () => {
   const player = reactive({
-    name: '',
+    name: 'Rudolf',
     avatar: 'knight',
     hp: 100,
-    attack: 10
+    attack: 10,
+    currentStage: 1,
+    completedStages: []
   })
 
   const randomNames = ['Alaric', 'Aurelia', 'Balin', 'Darian', 'Elric', 'Gwyneth', 'Idris', 'Jareth', 'Kaida', 'Lysander', 'Maeve', 'Niamh', 'Orion', 'Perrin', 'Quinlan', 'Rhiannon', 'Sable', 'Tamsin', 'Urien', 'Valeria']
 
-  function getHit (damage) {
+  function hitPlayer (damage) {
     player.hp -= damage
   }
 
@@ -18,9 +20,13 @@ export const playerStore = defineStore('player', () => {
     }
   }
 
+  function nextStage () {
+    player.currentStage++
+  }
+
   function getRandomName () {
     return randomNames[Math.floor(Math.random() * randomNames.length)]
   }
 
-  return { player, getHit, updatePlayer, getRandomName }
+  return { player, hitPlayer, updatePlayer, nextStage, getRandomName }
 })

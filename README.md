@@ -6,10 +6,13 @@ Player takes on the role of a Knight, a hero who has lost five pieces of his sou
  - Came up with all of the monster types and their background.
  - Immensely helped with Nuxt 3 as it's only been a single 'stable' version released, the docs are all over the place but Chat GPT seems to be handling it really well. I've found more answers to my errors & how to use certain features through Chat GPT vs their official docs. 
 
- ### Midjourney AI
+### Midjourney AI
  - Most if not all of the assets within the game have been created by Midjourney AI.
  - This includes all backgrounds, player characters and enemy monsters.
 
+### Copilot
+ - Auto completed some of the descriptions for the monsters as encountered.
+ - Auto complited a fair bit of necessary coding.
 
  ## Leiapix
  - Found this randomly, not fully sure if it uses AI but it's really cool, it adds 3D effect to your 2D images.
