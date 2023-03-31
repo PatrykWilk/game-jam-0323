@@ -2,7 +2,7 @@
   <div v-if="isLoading" class="w-screen h-screen bg-gray-800 flex items-center justify-center">
     <Spinner />
   </div>
-  <div v-else class="w-screen h-screen bg-cover bg-[center_bottom_-10rem] flex items-center justify-center" :class="currentStage && currentStage.background">
+  <div v-else class="w-screen h-screen bg-cover bg-[center_bottom_-10rem] flex items-center justify-center" :class="stageBackground">
     <div class="container mx-auto h-[800px] border border-white rounded-lg bg-gray-800 bg-opacity-70 flex flex-col">
       <div class="border-b border-white px-10 py-5">
         <h1 v-text="currentStage.name" class="text-white text-6xl text-center"></h1>
@@ -31,18 +31,10 @@
   const { getEnemy } = enemyStore()
   const { getStage } = stageStore()
 
-  const currentStage = computed(() => getStage(player.currentStage))
+  const currentStage = getStage(player.currentStage)
+  const stageBackground = computed(() => currentStage.background)
 
   isLoading = false
-
-  const handleNextStage = () => {
-    isLoading = true
-
-    nextStage()
-
-    isLoading = false
-  }
-
   
   // const state = reactive({
   //   isLoading: true,

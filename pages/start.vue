@@ -5,8 +5,7 @@
     </video>
     <div class="absolute top-0 w-screen h-screen max-w-screen max-h-screen flex flex-col items-center justify-center">
       <div class="flex items-center flex-1">
-        <h1 class="text-center text-white text-9xl flex-1 items-center font-extrabold drop-shadow-xl">Tower of Doom</h1>
-        {{ player.name }}
+        <h1 class="text-center text-white text-9xl flex-1 items-center font-extrabold drop-shadow-xl mt-20">Tower of Doom</h1>
       </div>
       <div class="w-[600px] border-2 border-white rounded-lg text-white p-4 font-extrabold bg-gray-900 bg-opacity-50">
         <p class="mb-3">In a far-off land, there lived a brave hero named {{player.name}}. One day, he was called upon to undertake a perilous quest: to journey to a tower of doom and retrieve five pieces of his soul, each taken by a different monster.</p>
@@ -14,7 +13,8 @@
         <p>{{player.name}} knew that the journey would be long and dangerous, but he was determined to complete his quest. He set out on foot, traversing mountains and crossing rivers, until he arrived at the tower's gates.</p>
       </div>
       <div class="flex-1 mt-10">
-        <NuxtLink @click="$emit('sound', 'mouseClick')" class="text-white text-center text-2xl font-bold hover:underline hover:animate-pulse" to="/enter">Enter the Tower</NuxtLink>
+        <button @click="$emit('sound', 'mouseClick')" class="text-white text-center text-2xl font-bold hover:underline hover:animate-pulse">Enter the Tower</button>
+        <!-- <NuxtLink @click="$emit('sound', 'mouseClick')" class="text-white text-center text-2xl font-bold hover:underline hover:animate-pulse" to="/enter">Enter the Tower</NuxtLink> -->
       </div>
     </div>
   </div>
@@ -23,5 +23,9 @@
 <script setup>
   import { playerStore } from '@/stores/playerStore';
   const { player } = playerStore();
-  console.log(player)
+
+  if (!player.name) {
+    const router = useRouter()
+    router.push('/')
+  }
 </script>
