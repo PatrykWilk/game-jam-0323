@@ -19,6 +19,7 @@
   })
 
   const handleSound = (sound) => {
+    eval(sound).value.currentTime = 0
     eval(sound).value.play()
   }
 

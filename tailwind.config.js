@@ -10,7 +10,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'start-bg': "url('/images/start/background.gif')"
+        'knight': "url('/images/player/knight.png')",
+        'knight-hover': "url('/images/player/knight.gif')",
+        'knight-alt': "url('/images/player/knight2.png')",
+        'knight-alt-hover': "url('/images/player/knight2.gif')"
       },
       fontFamily: {
         'sofia': ['Sofia Sans', 'sans-serif']

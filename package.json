@@ -13,6 +13,8 @@
     "nuxt": "^3.3.2"
   },
   "dependencies": {
-    "nuxt-icon": "^0.3.3"
+    "@pinia/nuxt": "^0.4.7",
+    "nuxt-icon": "^0.3.3",
+    "pinia": "^2.0.33"
   }
 }
