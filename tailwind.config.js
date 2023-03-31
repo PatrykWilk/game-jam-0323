@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        'initial': "url('/images/initial.png')",
         'knight': "url('/images/player/knight.png')",
         'knight-hover': "url('/images/player/knight.gif')",
         'knight-alt': "url('/images/player/knight2.png')",

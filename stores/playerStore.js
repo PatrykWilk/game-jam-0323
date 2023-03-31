@@ -6,6 +6,8 @@ export const playerStore = defineStore('player', () => {
     attack: 10
   })
 
+  const randomNames = ['Alaric', 'Aurelia', 'Balin', 'Darian', 'Elric', 'Gwyneth', 'Idris', 'Jareth', 'Kaida', 'Lysander', 'Maeve', 'Niamh', 'Orion', 'Perrin', 'Quinlan', 'Rhiannon', 'Sable', 'Tamsin', 'Urien', 'Valeria']
+
   function getHit (damage) {
     player.hp -= damage
   }
@@ -16,5 +18,9 @@ export const playerStore = defineStore('player', () => {
     }
   }
 
-  return { player, getHit, updatePlayer }
+  function getRandomName () {
+    return randomNames[Math.floor(Math.random() * randomNames.length)]
+  }
+
+  return { player, getHit, updatePlayer, getRandomName }
 })
