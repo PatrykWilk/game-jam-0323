@@ -7,7 +7,7 @@ export const playerStore = defineStore('player', () => {
     hp: 100,
     energy: 100,
     maxHp: 100,
-    currentStage: 4,
+    currentStage: 1,
     attack: 10
   })
 
