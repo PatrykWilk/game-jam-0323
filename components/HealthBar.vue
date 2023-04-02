@@ -12,10 +12,11 @@
   const props = defineProps(['health', 'maxHealth'])
 
   const currentHealth = computed(() => {
-    return props.health
+    return props.health <= 0 ? 0 : props.health
   })
 
   const healthProgress = computed(() => {
-    return (props.health / props.maxHealth) * 100
+    return (props.health / props.maxHealth) * 100 <=0 ? 0 : (props.health / props.maxHealth) * 100
   })
+  
 </script>

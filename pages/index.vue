@@ -46,7 +46,6 @@
     if (!playerAvatar.value) return
     updatePlayer({ name: playerName.value, avatar: playerAvatar.value })
     emits('sound', 'mouseClick')
-    emits('sound', 'backgroundMusic')
     router.push('/start')
   }
 </script>

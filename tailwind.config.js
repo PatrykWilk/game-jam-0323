@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        'spider': "url('/images/enemies/giant-spider.gif')",
         'initial': "url('/images/initial.png')",
         'knight': "url('/images/player/knight.png')",
         'knight-hover': "url('/images/player/knight.gif')",
@@ -20,7 +21,6 @@ module.exports = {
         'stage-three': "url('/images/levels/stage3.png')",
         'stage-four': "url('/images/levels/stage4.png')",
         'stage-five': "url('/images/levels/stage5.png')",
-        'spider': "url('/images/enemies/giant-spider.gif')",
         'minotaur': "url('/images/enemies/minotaur.gif')",
         'banshee': "url('/images/enemies/banshee.gif')",
         'medusa': "url('/images/enemies/medusa.gif')",

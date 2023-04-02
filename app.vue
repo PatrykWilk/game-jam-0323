@@ -1,30 +1,28 @@
 <template>
-  <!-- Audio tracks -->
-  <audio ref="backgroundMusic" src="/audio/song1.mp3" preload="auto" loop></audio>
-  <audio ref="mouseClick" src="/audio/click.mp3" preload="auto"></audio>
-  <AudioControl v-if="route.path !== '/'" :audioHandler="audioHandler" />
-
-  <NuxtPage @sound="handleSound" />
-
+  <div v-if="!isPlayable" class="w-screen h-screen bg-gray-800 flex justify-center items-center">
+    <h1 class="font-bold text-6xl text-center">This game is only playable on bigger screen :(</h1>
+  </div>
+  <template v-else>
+    <BackgroundMusic v-if="route.path !== '/'" />
+    <NuxtPage @sound="handleSound" />
+  </template>
 </template>
 
 <script setup>
   const route = useRoute()
-  const backgroundMusic = ref(null)
-  const mouseClick = ref(null)
 
-  onMounted(() => {
-    backgroundMusic.value.volume = 0.25
-    mouseClick.value.volume = 0.25
+  const isPlayable = computed(() => {
+    return window.innerWidth > 1439
   })
 
-  const handleSound = (sound) => {
-    eval(sound).value.currentTime = 0
-    eval(sound).value.play()
+  const playSound = (song) => {
+    const audio = new Audio(`/audio/${song}.mp3`)
+    audio.volume = 0.25
+    audio.play()
   }
 
-  const audioHandler = () => {
-    (backgroundMusic.value.paused) ? backgroundMusic.value.play() : backgroundMusic.value.pause()
+  const handleSound = (sound) => {
+    playSound(sound)
   }
 </script>
 

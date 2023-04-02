@@ -8,21 +8,21 @@
         <h1 v-text="currentStage.name" class="text-white text-6xl text-center"></h1>
         <p v-text="currentStage.description" class="text-xl text-center"></p>
       </div>
-      <div class="flex justify-between items-start h-full">
+      <div class="flex justify-between items-start h-full overflow-hidden">
         <div class="flex flex-1 border-r border-white h-full flex-col">
           <div class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg mt-4" :class="`bg-${currentPlayerAvatar}-hover`"></div>
           <h1 v-text="player.name" class="text-6xl text-center mt-4"></h1>
           <HealthBar :health="player.hp" :maxHealth="player.maxHp" />
-          <PlayerActions />
+          <PlayerActions @takeAction="takeTurn" />
         </div>
-        <div class="flex flex-1 h-full flex-col mt-4">
-          <div class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg" :class="`bg-${currentEnemyAvatar}`"></div>
-          <h1 v-text="enemy.name" class="text-6xl text-center mt-4"></h1>
-          <HealthBar :health="enemy.hp" :maxHealth="enemy.maxHp" />
-          <div class="flex flex-col flex-1 mb-4 bg-gray-800 bg-opacity-70 py-2 px-4">
+        <div class="flex flex-1 flex-col mt-4">
+          <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg" :src="`/images/enemies/${currentEnemyAvatar}.gif`" alt="">
+          <h1 v-text="currentEnemy.name" class="text-6xl text-center mt-4"></h1>
+          <HealthBar :health="currentEnemy.hp" :maxHealth="currentEnemy.maxHp" />
+          <div class="flex flex-col flex-1 mb-4 bg-gray-800 bg-opacity-70 px-4">
             <h1 class="text-xl font-extrabold">Combat Log:</h1>
-            <div class="w-full max-h-[220px] overflow-y-auto">
-              
+            <div class="h-[225px] overflow-y-auto pb-2">
+              <p v-for="(log, key) in combatLog" :key="key">{{ log }}</p>
             </div>
           </div>
         </div>
@@ -35,15 +35,18 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { stageStore } from '@/stores/stageStore'
+  import { combatLogStore } from '@/stores/combatLogStore'
   
   let isLoading = ref(true)
 
-  const { player, hitPlayer, nextStage } = playerStore()
-  const { getEnemy } = enemyStore()
+  const { player, updatePlayer, hitPlayer, healPlayer, nextStage } = playerStore()
+  const { currentEnemy, setEnemy, hitEnemy } = enemyStore()
   const { getStage } = stageStore()
+  const { combatLog, addLog } = combatLogStore()
+  const emits = defineEmits(['sound'])
 
   const currentStage = getStage(player.currentStage)
-  const enemy = getEnemy(player.currentStage)
+  setEnemy(player.currentStage)
 
   const currentBackground = computed(() => {
     if (isLoading) return 'bg-stage-one'
@@ -56,10 +59,74 @@
   })
 
   const currentEnemyAvatar = computed(() => {
-    if (isLoading) return 'spider'
-    return enemy.avatar
+    if (isLoading) return 'giant-spider'
+    return currentEnemy.avatar
   })
-  
+
   isLoading = false
+
+  const takeTurn = (action) => {
+    const enemyAction = currentEnemy.actions[Math.floor(Math.random() * currentEnemy.actions.length)]
+
+    switch (action.type) {
+      case 'quick-attack':
+        if (enemyAction.type === 'parry-quick-attack') {
+          addLog(`Enemy used ${enemyAction.label}, it deflected your attack and hit you for ${enemyAction.value} damage!`)
+          playSound(enemyAction.sound)
+          hitPlayer(enemyAction.value)
+        } else {
+          addLog(`You hit the ${currentEnemy.name} for ${action.value} damage!`)
+          playSound(action.sound)
+          hitEnemy(action.value)
+        }
+        break
+      case 'power-attack':
+        if (enemyAction.type === 'parry-power-attack') {
+          addLog(`Enemy used ${enemyAction.label}, it deflected your attack and hit you for ${enemyAction.value} damage!`)
+          playSound(enemyAction.sound)
+          hitPlayer(enemyAction.value)
+        } else {
+          addLog(`You hit the ${currentEnemy.name} for ${action.value} damage!`)
+          playSound(action.sound)
+          hitEnemy(action.value)
+        }
+        break
+      case 'heal':
+        playSound(action.sound)
+        healPlayer(action.value)
+        addLog(`You healed yourself for ${action.value} health!`)
+        setTimeout(() => {
+          if (enemyAction.type === 'quick-attack' || enemyAction.type === 'power-attack') {
+            addLog(`Enemy used ${enemyAction.label}, it hit you for ${enemyAction.value} damage!`)
+            playSound(enemyAction.sound)
+            hitPlayer(enemyAction.value)
+          }
+        }, 1000)
+        break
+      case 'parry-quick-attack':
+        if (enemyAction.type === 'quick-attack') {
+          addLog(`You parried the ${currentEnemy.name}'s attack!`)
+          hitEnemy(enemyAction.value)
+        } else {
+          addLog(`Enemy used ${enemyAction.label}, it hit you for ${enemyAction.value} damage!`)
+          hitPlayer(enemyAction.value)
+        }
+        break
+      case 'parry-power-attack':
+        if (enemyAction.type === 'power-attack') {
+          addLog(`You parried the ${currentEnemy.name}'s attack!`)
+          hitEnemy(enemyAction.value)
+        } else {
+          addLog(`Enemy used ${enemyAction.label}, it hit you for ${enemyAction.value} damage!`)
+          hitPlayer(enemyAction.value)
+        }
+        break
+    }
+  }
+
+  const playSound = (sound) => {
+    emits('sound', sound)
+  }
+  
 
 </script>
