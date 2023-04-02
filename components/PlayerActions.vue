@@ -27,6 +27,7 @@
   const { getActions } = playerStore()
 
   const actions = getActions()
+
   const enemyTurn = ref(false)
   const emits = defineEmits(['completeLevel', 'defeat'])
 
@@ -92,7 +93,7 @@
       }
 
       enemyTurn.value = false
-    }, 500)
+    }, 700)
   }
 
   const handleQuickAttack = (playerAction, enemyAction) => {
@@ -184,7 +185,7 @@
           playSound(action.sound)
           hitPlayer(action.value)
           addLog({
-            message: `<b>${currentEnemy.name}</b>' <b>${action.label}</b> attacked you for <b>${action.value}</b> damage!`,
+            message: `<b>${currentEnemy.name}</b>'s <b>${action.label}</b> attacked you for <b>${action.value}</b> damage!`,
             icon: action.icon,
             enemy: true
           })
@@ -193,7 +194,7 @@
           playSound(action.sound)
           hitPlayer(action.value)
           addLog({
-            message: `<b>${currentEnemy.name}</b>' <b>${action.label}</b> attacked you for <b>${action.value}</b> damage!`,
+            message: `<b>${currentEnemy.name}</b>'s <b>${action.label}</b> attacked you for <b>${action.value}</b> damage!`,
             icon: action.icon,
             enemy: true
           })

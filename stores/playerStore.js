@@ -4,21 +4,21 @@ export const playerStore = defineStore('player', () => {
   const player = reactive({
     name: 'Anekin',
     avatar: 'knight',
-    hp: 5,
+    hp: 100,
     energy: 100,
     maxHp: 100,
     currentStage: 1,
-    attack: 10
+    attack: 100
   })
 
-  const actions = [
+  const actions = computed(() => [
     {
       id: 1,
       type: 'quick-attack',
       label: 'Quick Attack',
-      description: 'A quick attack that deals 5 damage.',
+      description: `A quick attack that deals ${5 + (player.attack / 2)} damage.`,
       icon: 'ph:sword-bold',
-      value: 5 + player.attack,
+      value: 5 + (player.attack / 2),
       sound: 'slash',
       energy: '+10'
     },
@@ -26,7 +26,7 @@ export const playerStore = defineStore('player', () => {
       id: 2,
       type: 'power-attack',
       label: 'Heavy Attack',
-      description: 'A heavy attack that deals 10 damage.',
+      description: `A heavy attack that deals ${10 + player.attack} damage.`,
       icon: 'ri:sword-fill',
       value: 10 + player.attack,
       sound: 'slash',
@@ -36,11 +36,11 @@ export const playerStore = defineStore('player', () => {
       id: 3,
       type: 'heal',
       label: 'Use Health Potion',
-      description: 'Heals 20 health points back.',
+      description: `Heals ${20 + player.attack} health points back.`,
       icon: 'ph:hand-heart-fill',
       value: 20 + (player.attack / 2),
       sound: 'heal',
-      energy: '-50'
+      energy: '-40'
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ export const playerStore = defineStore('player', () => {
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-checkered-fill',
       sound: 'block',
-      energy: '+10'
+      energy: '+30'
     },
     {
       id: 5,
@@ -58,9 +58,9 @@ export const playerStore = defineStore('player', () => {
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-warning-bold',
       sound: 'block',
-      energy: '+20'
+      energy: '+30'
     }
-  ]
+  ])
 
   function getActions () {
     return actions
@@ -71,7 +71,7 @@ export const playerStore = defineStore('player', () => {
   }
   function healPlayer (heal) {
     player.hp += heal
-    if (player.hp > 100) player.hp = 100
+    if (player.hp > player.maxHp) player.hp = player.maxHp
   }
 
   function updatePlayer (update) {
@@ -97,12 +97,15 @@ export const playerStore = defineStore('player', () => {
     Object.assign(player, {
       hp: 100,
       energy: 100,
-      maxHp: 100
+      maxHp: 100,
+      currentStage: 1,
+      attack: 10
     })
   }
 
   return { 
     player,
+    actions,
     hitPlayer,
     healPlayer,
     updatePlayer,

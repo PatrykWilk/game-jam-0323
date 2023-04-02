@@ -24,7 +24,8 @@ module.exports = {
         'minotaur': "url('/images/enemies/minotaur.gif')",
         'banshee': "url('/images/enemies/banshee.gif')",
         'medusa': "url('/images/enemies/medusa.gif')",
-        'souleater': "url('/images/enemies/souleater.gif')"
+        'souleater': "url('/images/enemies/souleater.gif')",
+        'finish': "url('/images/levels/finish.png')"
       },
       fontFamily: {
         'sofia': ['Sofia Sans', 'sans-serif']
