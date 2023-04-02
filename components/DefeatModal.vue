@@ -18,7 +18,7 @@
   import { stageStore } from '@/stores/stageStore'
   import { playSound } from '@/utils/playSound'
 
-  const { resetPlayer } = playerStore()
+  const { player, resetPlayer } = playerStore()
   const { currentEnemy, resetEnemy } = enemyStore()
   const { resetLog } = combatLogStore()
   const { setStage } = stageStore()
@@ -28,6 +28,7 @@
   const handleRestart = () => {
     playSound('mouseClick')
     resetPlayer()
+    localStorage.setItem('player', JSON.stringify(player))
     resetEnemy(1)
     setStage(1)
     resetLog()

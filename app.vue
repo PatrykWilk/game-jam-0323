@@ -3,7 +3,8 @@
     <h1 class="font-bold text-6xl text-center">This game is only playable on bigger screen :(</h1>
   </div>
   <template v-else>
-    <BackgroundMusic v-if="route.path !== '/'" />
+    <ResetGame v-if="route.path !== '/'" />
+    <BackgroundMusic v-if="route.path !== '/' && route.path !== '/finish'" />
     <NuxtPage />
   </template>
 </template>

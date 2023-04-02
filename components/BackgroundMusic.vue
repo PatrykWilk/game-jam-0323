@@ -13,8 +13,8 @@
     audio.value = new Audio('/audio/song1.mp3')
     audio.value.loop = true
     audio.value.volume = 0.25
-    // audio.value.play()
-    // isPlaying.value = true
+    audio.value.play()
+    isPlaying.value = true
   })
 
   const handleMute = () => {
@@ -26,5 +26,9 @@
       isPlaying.value = true
     }
   }
+
+  onUnmounted(() => {
+    audio.value.pause()
+  })
 
 </script>

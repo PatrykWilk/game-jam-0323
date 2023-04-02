@@ -2,13 +2,13 @@ export const playerStore = defineStore('player', () => {
   const randomNames = ['Alaric', 'Aurelia', 'Balin', 'Darian', 'Elric', 'Gwyneth', 'Idris', 'Jareth', 'Kaida', 'Lysander', 'Maeve', 'Niamh', 'Orion', 'Perrin', 'Quinlan', 'Rhiannon', 'Sable', 'Tamsin', 'Urien', 'Valeria']
 
   const player = reactive({
-    name: 'Anekin',
-    avatar: 'knight',
+    name: '',
+    avatar: '',
     hp: 100,
     energy: 100,
     maxHp: 100,
-    currentStage: 1,
-    attack: 100
+    currentStage: 4,
+    attack: 10
   })
 
   const actions = computed(() => [
@@ -78,6 +78,8 @@ export const playerStore = defineStore('player', () => {
     for (let key in update) {
       player[key] = update[key]
     }
+
+    localStorage.setItem('player', JSON.stringify(player))
   }
 
   function updateEnergy (energy) {

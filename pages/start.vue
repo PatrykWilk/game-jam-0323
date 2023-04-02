@@ -22,10 +22,17 @@
 <script setup>
   import { playSound } from '@/utils/playSound'
   import { playerStore } from '@/stores/playerStore'
-  const { player } = playerStore()
+  const { player, updatePlayer } = playerStore()
 
-  if (!player.name) {
-    const router = useRouter()
-    router.push('/')
-  }
+  onMounted(() => {
+    const local = localStorage.getItem('player')
+    if (local) updatePlayer(JSON.parse(local))
+  
+    if (!player.name) {
+      const router = useRouter()
+      router.push('/')
+    }
+  })
+
+  
 </script>

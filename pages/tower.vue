@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <TrophyModal v-if="showTrophyModal" @continue="handleContinue" />
+    <WinModal v-if="showWinModal" @continue="handleContinue" />
     <DefeatModal v-if="showDefeatModal" @reset="showDefeatModal = false" />
   </div>
 </template>
@@ -34,11 +34,12 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { stageStore } from '@/stores/stageStore'
-  import { playSound } from '@/utils/playSound';
+  import { playSound } from '@/utils/playSound'
   
   let isLoading = ref(true)
+  const router = useRouter()
 
-  const { player } = playerStore()
+  const { player, updatePlayer } = playerStore()
   const { currentEnemy, setEnemy } = enemyStore()
   const { currentStage, setStage } = stageStore()
 
@@ -58,7 +59,7 @@
   isLoading = false
 
   const showDefeatModal = ref(false)
-  const showTrophyModal = ref(false)
+  const showWinModal = ref(false)
 
   const handleDefeat = () => {
     showDefeatModal.value = true
@@ -66,12 +67,25 @@
   }
 
   const handleCompleteLevel = () => {
-    showTrophyModal.value = true
     playSound('completeLevel')
+    if (player.currentStage === 5) return router.push('/finish')
+    showWinModal.value = true
   }
 
   const handleContinue = () => {
-    showTrophyModal.value = false
+    showWinModal.value = false
   }
+
+  onMounted(() => {
+    const local = localStorage.getItem('player')
+    if (local) updatePlayer(JSON.parse(local))
+
+    setStage(player.currentStage)
+    setEnemy(player.currentStage)
+    
+    if (!player.name) {
+      router.push('/')
+    }
+  })
 
 </script>

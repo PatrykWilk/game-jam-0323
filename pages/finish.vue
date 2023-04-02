@@ -13,12 +13,21 @@
 
 <script setup>
   import { playerStore } from '@/stores/playerStore'
-
+  import { playSound } from '@/utils/playSound'
+  
   const router = useRouter()
   const { player } = playerStore()
 
-  if (player.currentStage !== 5) {
-    router.push('/')
-  }
+  onMounted(() => {
+    playSound('finish')
+    
+    localStorage.removeItem('player')
+  
+    if (player.currentStage !== 5) {
+      router.push('/')
+    }
+  })
+
+
   
 </script>

@@ -33,10 +33,12 @@
 
     updatePlayer({
       hp: 100,
-      attack: player.attack + 15,
+      attack: player.attack + 16,
       currentStage: player.currentStage + 1,
       maxHp: player.maxHp + 25,
     })
+
+    localStorage.setItem('player', JSON.stringify(player))
 
     setEnemy(player.currentStage)
     setStage(player.currentStage)
