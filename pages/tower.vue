@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <!-- <TrophyModal /> -->
+    <TrophyModal v-if="showTrophyModal" @continue="handleContinue" />
     <DefeatModal v-if="showDefeatModal" @reset="showDefeatModal = false" />
   </div>
 </template>
@@ -33,7 +33,7 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { stageStore } from '@/stores/stageStore'
-  import { playSound } from '@/util/playSound';
+  import { playSound } from '@/utils/playSound';
   
   let isLoading = ref(true)
 
@@ -68,8 +68,15 @@
     playSound('defeat')
   }
 
+  const showTrophyModal = ref(true)
+
   const handleCompleteLevel = () => {
+    showTrophyModal.value = true
     playSound('completeLevel')
+  }
+
+  const handleContinue = () => {
+    showTrophyModal.value = false
   }
 
 </script>

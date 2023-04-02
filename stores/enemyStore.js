@@ -26,6 +26,31 @@ export const enemyStore = defineStore('enemy', () => {
           icon: 'ri:sword-fill'
         }
       ]
+    },
+    {
+      id: 2,
+      name: 'Minotaur',
+      avatar: 'minotaur',
+      hp: 80,
+      maxHp: 80,
+      actions: [
+        {
+          id: 1,
+          type: 'quick-attack',
+          label: 'Bite',
+          value: 3,
+          sound: 'bite',
+          icon: 'ph:sword-bold'
+        },
+        {
+          id: 2,
+          type: 'power-attack',
+          label: 'Spit Web',
+          value: 5,
+          sound: 'magic',
+          icon: 'ri:sword-fill'
+        }
+      ]
     }
   ]
   

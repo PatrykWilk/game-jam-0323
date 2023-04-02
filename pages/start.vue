@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-  import { playSound } from '@/util/playSound'
+  import { playSound } from '@/utils/playSound'
   import { playerStore } from '@/stores/playerStore'
   const { player } = playerStore()
 

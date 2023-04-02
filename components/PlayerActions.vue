@@ -19,7 +19,7 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { combatLogStore } from '@/stores/combatLogStore'
-  import { playSound } from '@/util/playSound'
+  import { playSound } from '@/utils/playSound'
 
   const { player, hitPlayer, healPlayer, updateEnergy } = playerStore()
   const { currentEnemy, hitEnemy } = enemyStore()

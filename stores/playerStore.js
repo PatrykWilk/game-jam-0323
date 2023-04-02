@@ -7,7 +7,8 @@ export const playerStore = defineStore('player', () => {
     hp: 5,
     energy: 100,
     maxHp: 100,
-    currentStage: 1
+    currentStage: 1,
+    attack: 10
   })
 
   const actions = [
@@ -17,7 +18,7 @@ export const playerStore = defineStore('player', () => {
       label: 'Quick Attack',
       description: 'A quick attack that deals 5 damage.',
       icon: 'ph:sword-bold',
-      value: 5,
+      value: 5 + player.attack,
       sound: 'slash',
       energy: '+10'
     },
@@ -27,7 +28,7 @@ export const playerStore = defineStore('player', () => {
       label: 'Heavy Attack',
       description: 'A heavy attack that deals 10 damage.',
       icon: 'ri:sword-fill',
-      value: 10,
+      value: 10 + player.attack,
       sound: 'slash',
       energy: '-20'
     },
@@ -37,7 +38,7 @@ export const playerStore = defineStore('player', () => {
       label: 'Use Health Potion',
       description: 'Heals 20 health points back.',
       icon: 'ph:hand-heart-fill',
-      value: 20,
+      value: 20 + (player.attack / 2),
       sound: 'heal',
       energy: '-50'
     },
@@ -47,7 +48,6 @@ export const playerStore = defineStore('player', () => {
       label: 'Block Quick Attack',
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-checkered-fill',
-      value: 5,
       sound: 'block',
       energy: '+10'
     },
@@ -57,7 +57,6 @@ export const playerStore = defineStore('player', () => {
       label: 'Block Heavy Attack',
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-warning-bold',
-      value: 10,
       sound: 'block',
       energy: '+20'
     }

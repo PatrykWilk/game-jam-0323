@@ -23,7 +23,7 @@
 
 <script setup>
   import { playerStore } from '@/stores/playerStore'
-  import { playSound } from '@/util/playSound'
+  import { playSound } from '@/utils/playSound'
 
   const { updatePlayer, getRandomName } = playerStore()
   const playerName = ref(null)

@@ -15,6 +15,7 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { combatLogStore } from '@/stores/combatLogStore'
+  import { playSound } from '@/utils/playSound'
 
   const { resetPlayer } = playerStore()
   const { currentEnemy, resetEnemy } = enemyStore()
@@ -23,6 +24,7 @@
   const emits = defineEmits(['reset'])
 
   const handleRestart = () => {
+    playSound('mouseClick')
     resetPlayer()
     resetEnemy(currentEnemy.id)
     resetLog()
