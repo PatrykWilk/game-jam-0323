@@ -23,6 +23,7 @@
 
 <script setup>
   import { playerStore } from '@/stores/playerStore'
+  import { playSound } from '@/util/playSound'
 
   const { updatePlayer, getRandomName } = playerStore()
   const playerName = ref(null)
@@ -32,12 +33,12 @@
   const emits = defineEmits(['sound'])
 
   const handleRandomName = () => {
-    emits('sound', 'mouseClick')
+    playSound('mouseClick')
     playerName.value = getRandomName()
   }
 
   const selectAvatar = (avatar) => {
-    emits('sound', 'mouseClick')
+    playSound('mouseClick')
     playerAvatar.value = avatar
   }
   
@@ -45,7 +46,7 @@
     if (!playerName.value) return
     if (!playerAvatar.value) return
     updatePlayer({ name: playerName.value, avatar: playerAvatar.value })
-    emits('sound', 'mouseClick')
+    playSound('mouseClick')
     router.push('/start')
   }
 </script>

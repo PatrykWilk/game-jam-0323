@@ -13,15 +13,16 @@
         <p>{{player.name}} knew that the journey would be long and dangerous, but he was determined to complete his quest. He set out on foot, traversing mountains and crossing rivers, until he arrived at the tower's gates.</p>
       </div>
       <div class="flex-1 mt-10">
-        <NuxtLink @click="$emit('sound', 'mouseClick')" class="text-white text-center text-2xl font-bold hover:underline hover:animate-pulse" to="/tower">Enter the Tower</NuxtLink>
+        <NuxtLink @click="playSound('mouseClick')" class="text-white text-center text-2xl font-bold hover:underline hover:animate-pulse" to="/tower">Enter the Tower</NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { playerStore } from '@/stores/playerStore';
-  const { player } = playerStore();
+  import { playSound } from '@/util/playSound'
+  import { playerStore } from '@/stores/playerStore'
+  const { player } = playerStore()
 
   if (!player.name) {
     const router = useRouter()

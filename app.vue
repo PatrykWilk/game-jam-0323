@@ -4,26 +4,20 @@
   </div>
   <template v-else>
     <BackgroundMusic v-if="route.path !== '/'" />
-    <NuxtPage @sound="handleSound" />
+    <NuxtPage />
   </template>
 </template>
 
 <script setup>
   const route = useRoute()
+  const isPlayable = ref(true)
 
-  const isPlayable = computed(() => {
-    return window.innerWidth > 1439
+  onMounted(() => {
+    if (window.innerWidth < 1439) {
+      isPlayable.value = false
+    }
   })
 
-  const playSound = (song) => {
-    const audio = new Audio(`/audio/${song}.mp3`)
-    audio.volume = 0.25
-    audio.play()
-  }
-
-  const handleSound = (sound) => {
-    playSound(sound)
-  }
 </script>
 
 <style>

@@ -41,8 +41,8 @@ export const playerStore = defineStore('player', () => {
     },
     {
       id: 4,
-      type: 'parry-quick-attack',
-      label: 'Parry Quick Attack',
+      type: 'block-quick',
+      label: 'Block Quick Attack',
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-checkered-fill',
       value: 5,
@@ -50,8 +50,8 @@ export const playerStore = defineStore('player', () => {
     },
     {
       id: 5,
-      type: 'parry-power-attack',
-      label: 'Parry Heavy Attack',
+      type: 'block-power',
+      label: 'Block Heavy Attack',
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-warning-bold',
       value: 10,
