@@ -4,12 +4,10 @@ export const playerStore = defineStore('player', () => {
   const player = reactive({
     name: 'Anekin',
     avatar: 'knight',
-    hp: 100,
+    hp: 5,
     energy: 100,
     maxHp: 100,
-    attack: 10,
-    currentStage: 1,
-    completedStages: []
+    currentStage: 1
   })
 
   const actions = [
@@ -96,5 +94,23 @@ export const playerStore = defineStore('player', () => {
     return randomNames[Math.floor(Math.random() * randomNames.length)]
   }
 
-  return { player, hitPlayer, healPlayer, updatePlayer, updateEnergy, nextStage, getRandomName, getActions }
+  function resetPlayer () {
+    Object.assign(player, {
+      hp: 100,
+      energy: 100,
+      maxHp: 100
+    })
+  }
+
+  return { 
+    player,
+    hitPlayer,
+    healPlayer,
+    updatePlayer,
+    updateEnergy,
+    nextStage,
+    getRandomName,
+    getActions,
+    resetPlayer
+  }
 })

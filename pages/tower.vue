@@ -14,7 +14,7 @@
           <h1 v-text="player.name" class="text-6xl text-center mt-4"></h1>
           <HealthBar :health="player.hp" :maxHealth="player.maxHp" />
           <EnergyBar />
-          <PlayerActions @completeLevel="handleCompleteLevel" />
+          <PlayerActions @completeLevel="handleCompleteLevel" @defeat="handleDefeat" />
         </div>
         <div class="flex flex-1 flex-col mt-4">
           <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg" :src="`/images/enemies/${currentEnemyAvatar}.gif`" alt="">
@@ -24,6 +24,8 @@
         </div>
       </div>
     </div>
+    <!-- <TrophyModal /> -->
+    <DefeatModal v-if="showDefeatModal" @reset="showDefeatModal = false" />
   </div>
 </template>
 
@@ -58,6 +60,13 @@
   })
 
   isLoading = false
+
+  const showDefeatModal = ref(false)
+
+  const handleDefeat = () => {
+    showDefeatModal.value = true
+    playSound('defeat')
+  }
 
   const handleCompleteLevel = () => {
     playSound('completeLevel')

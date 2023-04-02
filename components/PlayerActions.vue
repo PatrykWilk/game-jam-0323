@@ -28,7 +28,7 @@
 
   const actions = getActions()
   const enemyTurn = ref(false)
-  const emits = defineEmits(['completeLevel'])
+  const emits = defineEmits(['completeLevel', 'defeat'])
 
   const checkEnergy = (energy) => {
     return player.energy + parseInt(energy) >= 0
@@ -71,16 +71,26 @@
         break
     }
 
-    if (currentEnemy.hp <= 0) {
-      addLog({
-        message: `You defeated <b>${currentEnemy.name}</b>!`,
-        icon: 'ri:trophy-fill'
-      })
-
-      emits('completeLevel')
-    }
-
+    
     setTimeout(() => {
+      if (currentEnemy.hp <= 0) {
+        addLog({
+          message: `You defeated <b>${currentEnemy.name}</b>!`,
+          icon: 'ri:trophy-fill'
+        })
+  
+        emits('completeLevel')
+      }
+  
+      if (player.hp <= 0) {
+        addLog({
+          message: `You were defeated by <b>${currentEnemy.name}</b>!`,
+          icon: 'ri:skull-2-fill'
+        })
+  
+        emits('defeat')
+      }
+
       enemyTurn.value = false
     }, 500)
   }
@@ -189,6 +199,6 @@
           })
           break
       }
-    }, 200)
+    }, 500)
   }
 </script>

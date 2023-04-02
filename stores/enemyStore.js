@@ -36,6 +36,10 @@ export const enemyStore = defineStore('enemy', () => {
   function hitEnemy (damage) {
     currentEnemy.hp -= damage
   }
+
+  function resetEnemy (id) {
+    Object.assign(currentEnemy, enemies.find(enemy => enemy.id === id))
+  }
   
-  return { currentEnemy, setEnemy, hitEnemy }
+  return { currentEnemy, setEnemy, hitEnemy, resetEnemy }
 })
