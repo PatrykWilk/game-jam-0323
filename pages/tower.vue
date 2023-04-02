@@ -11,14 +11,14 @@
       </div>
       <div class="flex justify-between items-start h-full overflow-hidden">
         <div class="flex flex-1 border-r border-white h-full flex-col">
-          <div class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg mt-4" :class="`bg-${currentPlayerAvatar}-hover`"></div>
+          <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg mt-4" :src="`/images/player/${currentPlayerAvatar}.gif`" alt="">
           <h1 v-text="player.name" class="text-6xl text-center mt-4"></h1>
           <HealthBar :health="player.hp" :maxHealth="player.maxHp" />
           <EnergyBar />
           <PlayerActions @completeLevel="handleCompleteLevel" @defeat="handleDefeat" />
         </div>
-        <div class="flex flex-1 flex-col mt-4">
-          <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg" :src="`/images/enemies/${currentEnemyAvatar}.gif`" alt="">
+        <div class="flex flex-1 flex-col">
+          <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg mt-4" :src="`/images/enemies/${currentEnemyAvatar}.gif`" alt="">
           <h1 v-text="currentEnemy.name" class="text-6xl text-center mt-4"></h1>
           <HealthBar :health="currentEnemy.hp" :maxHealth="currentEnemy.maxHp" />
           <CombatLog />
