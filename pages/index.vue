@@ -30,7 +30,6 @@
   const playerAvatar = ref(null)
 
   const router = useRouter()
-  const emits = defineEmits(['sound'])
 
   const handleRandomName = () => {
     playSound('mouseClick')

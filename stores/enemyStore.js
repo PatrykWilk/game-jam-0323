@@ -14,14 +14,16 @@ export const enemyStore = defineStore('enemy', () => {
           type: 'quick-attack',
           label: 'Bite',
           value: 3,
-          sound: 'bite'
+          sound: 'bite',
+          icon: 'ph:sword-bold'
         },
         {
           id: 2,
           type: 'power-attack',
           label: 'Spit Web',
           value: 5,
-          sound: 'magic'
+          sound: 'magic',
+          icon: 'ri:sword-fill'
         }
       ]
     }

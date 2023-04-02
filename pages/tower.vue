@@ -13,7 +13,8 @@
           <div class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg mt-4" :class="`bg-${currentPlayerAvatar}-hover`"></div>
           <h1 v-text="player.name" class="text-6xl text-center mt-4"></h1>
           <HealthBar :health="player.hp" :maxHealth="player.maxHp" />
-          <PlayerActions />
+          <EnergyBar />
+          <PlayerActions @completeLevel="handleCompleteLevel" />
         </div>
         <div class="flex flex-1 flex-col mt-4">
           <img class="w-60 h-60 mx-auto bg-contain border border-white rounded-lg" :src="`/images/enemies/${currentEnemyAvatar}.gif`" alt="">
@@ -30,6 +31,7 @@
   import { playerStore } from '@/stores/playerStore'
   import { enemyStore } from '@/stores/enemyStore'
   import { stageStore } from '@/stores/stageStore'
+  import { playSound } from '@/util/playSound';
   
   let isLoading = ref(true)
 
@@ -55,6 +57,10 @@
     return currentEnemy.avatar
   })
 
-  isLoading = false  
+  isLoading = false
+
+  const handleCompleteLevel = () => {
+    playSound('completeLevel')
+  }
 
 </script>

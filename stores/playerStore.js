@@ -5,6 +5,7 @@ export const playerStore = defineStore('player', () => {
     name: 'Anekin',
     avatar: 'knight',
     hp: 100,
+    energy: 100,
     maxHp: 100,
     attack: 10,
     currentStage: 1,
@@ -19,7 +20,8 @@ export const playerStore = defineStore('player', () => {
       description: 'A quick attack that deals 5 damage.',
       icon: 'ph:sword-bold',
       value: 5,
-      sound: 'slash'
+      sound: 'slash',
+      energy: '+10'
     },
     {
       id: 2,
@@ -28,7 +30,8 @@ export const playerStore = defineStore('player', () => {
       description: 'A heavy attack that deals 10 damage.',
       icon: 'ri:sword-fill',
       value: 10,
-      sound: 'slash'
+      sound: 'slash',
+      energy: '-20'
     },
     {
       id: 3,
@@ -37,7 +40,8 @@ export const playerStore = defineStore('player', () => {
       description: 'Heals 20 health points back.',
       icon: 'ph:hand-heart-fill',
       value: 20,
-      sound: 'heal'
+      sound: 'heal',
+      energy: '-50'
     },
     {
       id: 4,
@@ -46,7 +50,8 @@ export const playerStore = defineStore('player', () => {
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-checkered-fill',
       value: 5,
-      sound: 'block'
+      sound: 'block',
+      energy: '+10'
     },
     {
       id: 5,
@@ -55,7 +60,8 @@ export const playerStore = defineStore('player', () => {
       description: 'Block and reflect damage back.',
       icon: 'ph:shield-warning-bold',
       value: 10,
-      sound: 'block'
+      sound: 'block',
+      energy: '+20'
     }
   ]
 
@@ -68,12 +74,18 @@ export const playerStore = defineStore('player', () => {
   }
   function healPlayer (heal) {
     player.hp += heal
+    if (player.hp > 100) player.hp = 100
   }
 
   function updatePlayer (update) {
     for (let key in update) {
       player[key] = update[key]
     }
+  }
+
+  function updateEnergy (energy) {
+    player.energy += parseInt(energy)
+    if (player.energy > 100) player.energy = 100
   }
 
   function nextStage () {
@@ -84,5 +96,5 @@ export const playerStore = defineStore('player', () => {
     return randomNames[Math.floor(Math.random() * randomNames.length)]
   }
 
-  return { player, hitPlayer, healPlayer, updatePlayer, nextStage, getRandomName, getActions }
+  return { player, hitPlayer, healPlayer, updatePlayer, updateEnergy, nextStage, getRandomName, getActions }
 })
