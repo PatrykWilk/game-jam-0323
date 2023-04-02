@@ -14,7 +14,7 @@
       <h1 class="text-white text-2xl text-center mb-4">Select your avatar</h1>
       <div class="flex justify-around align-baseline mb-6 cursor-pointer">
         <div @click="selectAvatar('knight')" class="w-60 h-60 mx-2 rounded-lg border bg-knight bg-cover bg-no-repeat hover:bg-knight-hover transition-all duration-700" :class="player.avatar === 'knight' && 'border-red-800 bg-knight-hover'"></div>
-        <div @click="selectAvatar('knight-alt')" class="w-60 h-60 mx-2 rounded-lg border bg-knight-alt bg-cover bg-no-repeat hover:bg-knight-alt-hover transition-all duration-700" :class="player.avatar === 'knight-alt' && 'border-red-800 bg-knight-alt-hover'"></div>
+        <div @click="selectAvatar('knight2')" class="w-60 h-60 mx-2 rounded-lg border bg-knight-alt bg-cover bg-no-repeat hover:bg-knight-alt-hover transition-all duration-700" :class="player.avatar === 'knight-alt' && 'border-red-800 bg-knight-alt-hover'"></div>
       </div>
       <button type="submit" class="w-full p-2 bg-white text-black text-2xl font-extrabold">New Game</button>
     </form>
